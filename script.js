@@ -4,8 +4,9 @@ const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-let t = 0;
+let time = 0;
 
+// función corazón
 function heart(t) {
   return {
     x: 16 * Math.pow(Math.sin(t), 3),
@@ -13,14 +14,18 @@ function heart(t) {
   };
 }
 
-function drawHeart(scale, offsetX, offsetY, color) {
+// dibuja corazón con glow real
+function drawNeonHeart(scale, glowIntensity) {
+  let cx = canvas.width / 2;
+  let cy = canvas.height / 2;
+
   ctx.beginPath();
 
-  for (let i = 0; i <= Math.PI * 2; i += 0.02) {
-    let p = heart(i + t);
+  for (let i = 0; i <= Math.PI * 2; i += 0.01) {
+    let p = heart(i);
 
-    let x = offsetX + p.x * scale;
-    let y = offsetY + p.y * scale;
+    let x = cx + p.x * scale;
+    let y = cy + p.y * scale;
 
     if (i === 0) ctx.moveTo(x, y);
     else ctx.lineTo(x, y);
@@ -28,28 +33,32 @@ function drawHeart(scale, offsetX, offsetY, color) {
 
   ctx.closePath();
 
-  // efecto neón 🔥
-  ctx.shadowBlur = 20;
-  ctx.shadowColor = color;
-  ctx.strokeStyle = color;
-  ctx.lineWidth = 2;
+  // glow fuerte 🔥
+  ctx.shadowBlur = glowIntensity;
+  ctx.shadowColor = "#ff2e88";
 
+  ctx.strokeStyle = "#ff2e88";
+  ctx.lineWidth = 3;
   ctx.stroke();
+
+  // relleno suave (esto hace que ya no se vea “líneas vacías”)
+  ctx.fillStyle = "rgba(255, 46, 136, 0.08)";
+  ctx.fill();
 }
 
+// animación con latido 💓
 function animate() {
-  ctx.fillStyle = "rgba(0,0,0,0.2)";
+  ctx.fillStyle = "rgba(0,0,0,0.3)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  let centerX = canvas.width / 2;
-  let centerY = canvas.height / 2;
+  let pulse = Math.sin(time) * 2;
 
-  // múltiples capas para efecto glow
-  drawHeart(20, centerX, centerY, "#ff2e88");
-  drawHeart(22, centerX, centerY, "#ff4da6");
-  drawHeart(24, centerX, centerY, "#ff80bf");
+  // capas para efecto neón real
+  drawNeonHeart(20 + pulse, 25);
+  drawNeonHeart(22 + pulse, 40);
+  drawNeonHeart(24 + pulse, 60);
 
-  t += 0.01;
+  time += 0.05;
 
   requestAnimationFrame(animate);
 }
