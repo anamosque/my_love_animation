@@ -9,31 +9,39 @@
     margin: 0;
     height: 100vh;
     background: black;
-
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
+    overflow: hidden;
     font-family: Arial;
   }
 
   h1 {
     color: #ff2e88;
     font-size: 42px;
-    margin-bottom: 40px;
-
+    margin-bottom: 10px;
     text-shadow:
       0 0 10px #ff2e88,
       0 0 20px #ff2e88,
       0 0 40px #ff2e88;
   }
 
-  /* ❤️ CORAZÓN */
+  h2 {
+    color: #ff80bf;
+    font-size: 28px;
+    margin-bottom: 40px;
+    text-shadow:
+      0 0 10px #ff80bf,
+      0 0 20px #ff80bf,
+      0 0 40px #ff80bf;
+  }
+
+  /* ❤️ CORAZÓN GIGANTE */
   .heart {
     position: relative;
-    width: 280px;
-    height: 280px;
+    width: 300px;
+    height: 300px;
     transform: rotate(45deg);
     background: #ff2e88;
 
@@ -49,8 +57,8 @@
   .heart::after {
     content: "";
     position: absolute;
-    width: 280px;
-    height: 280px;
+    width: 300px;
+    height: 300px;
     background: #ff2e88;
     border-radius: 50%;
 
@@ -61,19 +69,19 @@
   }
 
   .heart::before {
-    top: -140px;
+    top: -150px;
     left: 0;
   }
 
   .heart::after {
-    left: -140px;
+    left: -150px;
     top: 0;
   }
 
-  /* 💓 LATIDO */
+  /* 💓 latido */
   @keyframes pulse {
     0%   { transform: scale(1) rotate(45deg); }
-    50%  { transform: scale(1.08) rotate(45deg); }
+    50%  { transform: scale(1.1) rotate(45deg); }
     100% { transform: scale(1) rotate(45deg); }
   }
 </style>
@@ -82,6 +90,7 @@
 <body>
 
 <h1>I love you ❤️</h1>
+<h2>Emanolito 💖</h2>
 
 <div class="heart"></div>
 
