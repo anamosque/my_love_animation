@@ -1,12 +1,15 @@
 const canvas = document.getElementById("heart");
 const ctx = canvas.getContext("2d");
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener("resize", resize);
 
-let time = 0;
+let t = 0;
 
-// función corazón
 function heart(t) {
   return {
     x: 16 * Math.pow(Math.sin(t), 3),
@@ -14,10 +17,9 @@ function heart(t) {
   };
 }
 
-// dibuja corazón con glow real
-function drawNeonHeart(scale, glowIntensity) {
-  let cx = canvas.width / 2;
-  let cy = canvas.height / 2;
+function drawHeart(scale) {
+  const cx = canvas.width / 2;
+  const cy = canvas.height / 2;
 
   ctx.beginPath();
 
@@ -33,32 +35,36 @@ function drawNeonHeart(scale, glowIntensity) {
 
   ctx.closePath();
 
-  // glow fuerte 🔥
-  ctx.shadowBlur = glowIntensity;
+  // 🔥 GRADIENTE (esto es lo que faltaba)
+  let gradient = ctx.createRadialGradient(cx, cy, 10, cx, cy, 300);
+  gradient.addColorStop(0, "#ff2e88");
+  gradient.addColorStop(0.5, "#ff4da6");
+  gradient.addColorStop(1, "transparent");
+
+  // 💖 relleno luminoso
+  ctx.fillStyle = gradient;
+  ctx.fill();
+
+  // ✨ glow fuerte real
+  ctx.shadowBlur = 50;
   ctx.shadowColor = "#ff2e88";
 
   ctx.strokeStyle = "#ff2e88";
-  ctx.lineWidth = 3;
+  ctx.lineWidth = 4;
   ctx.stroke();
-
-  // relleno suave (esto hace que ya no se vea “líneas vacías”)
-  ctx.fillStyle = "rgba(255, 46, 136, 0.08)";
-  ctx.fill();
 }
 
-// animación con latido 💓
 function animate() {
-  ctx.fillStyle = "rgba(0,0,0,0.3)";
+  ctx.fillStyle = "rgba(0,0,0,0.25)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  let pulse = Math.sin(time) * 2;
+  let pulse = Math.sin(t) * 1.5;
 
-  // capas para efecto neón real
-  drawNeonHeart(20 + pulse, 25);
-  drawNeonHeart(22 + pulse, 40);
-  drawNeonHeart(24 + pulse, 60);
+  drawHeart(18 + pulse);
+  drawHeart(20 + pulse);
+  drawHeart(22 + pulse);
 
-  time += 0.05;
+  t += 0.05;
 
   requestAnimationFrame(animate);
 }
