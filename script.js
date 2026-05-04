@@ -10,6 +10,7 @@ window.addEventListener("resize", resize);
 
 let t = 0;
 
+// función corazón
 function heart(t) {
   return {
     x: 16 * Math.pow(Math.sin(t), 3),
@@ -17,9 +18,14 @@ function heart(t) {
   };
 }
 
+// 🔥 calcula escala dinámica (esto es lo importante)
+function getScale() {
+  return Math.min(canvas.width, canvas.height) / 40;
+}
+
 function drawHeart(scale) {
   const cx = canvas.width / 2;
-  const cy = canvas.height / 2;
+  const cy = canvas.height / 2 + 40; // un poco abajo para no tapar el texto
 
   ctx.beginPath();
 
@@ -35,28 +41,29 @@ function drawHeart(scale) {
 
   ctx.closePath();
 
-  // 🔥 glow fuerte
-  ctx.shadowBlur = 40;
+  // ✨ glow
+  ctx.shadowBlur = 50;
   ctx.shadowColor = "#ff2e88";
 
   ctx.strokeStyle = "#ff2e88";
-  ctx.lineWidth = 5;
+  ctx.lineWidth = 6;
   ctx.stroke();
 
-  // 💖 relleno suave
-  ctx.fillStyle = "rgba(255, 46, 136, 0.15)";
+  // 💖 relleno
+  ctx.fillStyle = "rgba(255, 46, 136, 0.12)";
   ctx.fill();
 }
 
 function animate() {
-  ctx.fillStyle = "rgba(0,0,0,0.3)";
+  ctx.fillStyle = "rgba(0,0,0,0.25)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   let pulse = Math.sin(t) * 2;
+  let baseScale = getScale();
 
-  drawHeart(35 + pulse);
-  drawHeart(38 + pulse);
-  drawHeart(42 + pulse);
+  drawHeart(baseScale + pulse);
+  drawHeart(baseScale + 5 + pulse);
+  drawHeart(baseScale + 10 + pulse);
 
   t += 0.05;
 
