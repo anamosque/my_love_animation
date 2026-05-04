@@ -11,19 +11,17 @@
     background: black;
 
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* 👈 clave */
+    justify-content: center;
     align-items: center;
+    flex-direction: column;
 
-    padding-top: 40px; /* espacio arriba */
-    overflow: hidden;
     font-family: Arial;
   }
 
   h1 {
     color: #ff2e88;
     font-size: 42px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 
     text-shadow:
       0 0 10px #ff2e88,
@@ -34,12 +32,10 @@
   /* ❤️ CORAZÓN */
   .heart {
     position: relative;
-    width: 260px; /* 👈 un poquito más pequeño */
-    height: 260px;
+    width: 280px;
+    height: 280px;
     transform: rotate(45deg);
     background: #ff2e88;
-
-    margin: 30px 0; /* 👈 separa del texto */
 
     box-shadow:
       0 0 30px #ff2e88,
@@ -53,8 +49,8 @@
   .heart::after {
     content: "";
     position: absolute;
-    width: 260px;
-    height: 260px;
+    width: 280px;
+    height: 280px;
     background: #ff2e88;
     border-radius: 50%;
 
@@ -65,12 +61,12 @@
   }
 
   .heart::before {
-    top: -130px;
+    top: -140px;
     left: 0;
   }
 
   .heart::after {
-    left: -130px;
+    left: -140px;
     top: 0;
   }
 
@@ -80,19 +76,6 @@
     50%  { transform: scale(1.08) rotate(45deg); }
     100% { transform: scale(1) rotate(45deg); }
   }
-
-  /* 💖 NOMBRE */
-  .nombre {
-    margin-top: 30px;
-    color: #ff80bf;
-    font-size: 28px;
-    font-weight: bold;
-
-    text-shadow:
-      0 0 10px #ff80bf,
-      0 0 20px #ff80bf,
-      0 0 40px #ff2e88;
-  }
 </style>
 </head>
 
@@ -101,8 +84,6 @@
 <h1>I love you ❤️</h1>
 
 <div class="heart"></div>
-
-<div class="nombre">Emanolito ❤️</div>
 
 </body>
 </html>
