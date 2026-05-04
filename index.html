@@ -9,10 +9,13 @@
     margin: 0;
     height: 100vh;
     background: black;
+
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
+    justify-content: flex-start; /* 👈 clave */
+    align-items: center;
+
+    padding-top: 40px; /* espacio arriba */
     overflow: hidden;
     font-family: Arial;
   }
@@ -21,6 +24,7 @@
     color: #ff2e88;
     font-size: 42px;
     margin-bottom: 20px;
+
     text-shadow:
       0 0 10px #ff2e88,
       0 0 20px #ff2e88,
@@ -30,10 +34,12 @@
   /* ❤️ CORAZÓN */
   .heart {
     position: relative;
-    width: 300px;
-    height: 300px;
+    width: 260px; /* 👈 un poquito más pequeño */
+    height: 260px;
     transform: rotate(45deg);
     background: #ff2e88;
+
+    margin: 30px 0; /* 👈 separa del texto */
 
     box-shadow:
       0 0 30px #ff2e88,
@@ -47,8 +53,8 @@
   .heart::after {
     content: "";
     position: absolute;
-    width: 300px;
-    height: 300px;
+    width: 260px;
+    height: 260px;
     background: #ff2e88;
     border-radius: 50%;
 
@@ -59,29 +65,28 @@
   }
 
   .heart::before {
-    top: -150px;
+    top: -130px;
     left: 0;
   }
 
   .heart::after {
-    left: -150px;
+    left: -130px;
     top: 0;
   }
 
   /* 💓 LATIDO */
   @keyframes pulse {
     0%   { transform: scale(1) rotate(45deg); }
-    50%  { transform: scale(1.1) rotate(45deg); }
+    50%  { transform: scale(1.08) rotate(45deg); }
     100% { transform: scale(1) rotate(45deg); }
   }
 
-  /* 💖 NOMBRE ABAJO */
+  /* 💖 NOMBRE */
   .nombre {
     margin-top: 30px;
     color: #ff80bf;
     font-size: 28px;
     font-weight: bold;
-    text-align: center;
 
     text-shadow:
       0 0 10px #ff80bf,
