@@ -1,25 +1,90 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Love</title>
+<meta charset="UTF-8">
+<title>Love</title>
 
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family: Arial; }
-    body { background:black; overflow:hidden; }
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    font-family: Arial;
+  }
 
-    h1 {
-      position:absolute; width:100%; top:8%;
-      text-align:center; color:#ff2e88; font-size:42px;
-      text-shadow:0 0 10px #ff2e88, 0 0 20px #ff2e88, 0 0 40px #ff2e88;
-    }
+  h1 {
+    color: #ff2e88;
+    font-size: 42px;
+    margin-bottom: 10px;
+    text-shadow:
+      0 0 10px #ff2e88,
+      0 0 20px #ff2e88,
+      0 0 40px #ff2e88;
+  }
 
-    h2 {
-      position:absolute; width:100%; top:16%;
-      text-align:center; color:#ff80bf; font-size:28px;
-      text-shadow:0 0 10px #ff80bf, 0 0 20px #ff80bf, 0 0 40px #ff80bf;
-    }
-  </style>
+  h2 {
+    color: #ff80bf;
+    font-size: 28px;
+    margin-bottom: 40px;
+    text-shadow:
+      0 0 10px #ff80bf,
+      0 0 20px #ff80bf,
+      0 0 40px #ff80bf;
+  }
+
+  /* ❤️ CORAZÓN GIGANTE */
+  .heart {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    transform: rotate(45deg);
+    background: #ff2e88;
+
+    box-shadow:
+      0 0 30px #ff2e88,
+      0 0 60px #ff2e88,
+      0 0 100px #ff2e88;
+
+    animation: pulse 1.2s infinite;
+  }
+
+  .heart::before,
+  .heart::after {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: #ff2e88;
+    border-radius: 50%;
+
+    box-shadow:
+      0 0 30px #ff2e88,
+      0 0 60px #ff2e88,
+      0 0 100px #ff2e88;
+  }
+
+  .heart::before {
+    top: -150px;
+    left: 0;
+  }
+
+  .heart::after {
+    left: -150px;
+    top: 0;
+  }
+
+  /* 💓 latido */
+  @keyframes pulse {
+    0%   { transform: scale(1) rotate(45deg); }
+    50%  { transform: scale(1.1) rotate(45deg); }
+    100% { transform: scale(1) rotate(45deg); }
+  }
+</style>
 </head>
 
 <body>
@@ -27,60 +92,7 @@
 <h1>I love you ❤️</h1>
 <h2>Emanolito 💖</h2>
 
-<canvas id="heart"></canvas>
-
-<!-- 🔥 TODO EL JS VA AQUÍ -->
-<script>
-const canvas = document.getElementById("heart");
-const ctx = canvas.getContext("2d");
-
-function resize() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-resize();
-window.addEventListener("resize", resize);
-
-function heart(t) {
-  return {
-    x: 16 * Math.pow(Math.sin(t), 3),
-    y: -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t))
-  };
-}
-
-function draw() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  const scale = Math.min(canvas.width, canvas.height) / 25;
-  const cx = canvas.width / 2;
-  const cy = canvas.height / 2 + 50;
-
-  ctx.beginPath();
-
-  for (let i = 0; i <= Math.PI * 2; i += 0.01) {
-    let p = heart(i);
-    let x = cx + p.x * scale;
-    let y = cy + p.y * scale;
-
-    if (i === 0) ctx.moveTo(x, y);
-    else ctx.lineTo(x, y);
-  }
-
-  ctx.closePath();
-
-  ctx.shadowBlur = 40;
-  ctx.shadowColor = "#ff2e88";
-
-  ctx.strokeStyle = "#ff2e88";
-  ctx.lineWidth = 5;
-  ctx.stroke();
-
-  ctx.fillStyle = "rgba(255, 46, 136, 0.2)";
-  ctx.fill();
-}
-
-draw();
-</script>
+<div class="heart"></div>
 
 </body>
 </html>
