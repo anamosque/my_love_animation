@@ -27,17 +27,7 @@
       0 0 40px #ff2e88;
   }
 
-  h2 {
-    color: #ff80bf;
-    font-size: 28px;
-    margin-bottom: 40px;
-    text-shadow:
-      0 0 10px #ff80bf,
-      0 0 20px #ff80bf,
-      0 0 40px #ff80bf;
-  }
-
-  /* ❤️ CORAZÓN GIGANTE */
+  /* ❤️ CORAZÓN */
   .heart {
     position: relative;
     width: 300px;
@@ -78,21 +68,39 @@
     top: 0;
   }
 
-  /* 💓 latido */
+  /* 💓 LATIDO */
   @keyframes pulse {
     0%   { transform: scale(1) rotate(45deg); }
     50%  { transform: scale(1.1) rotate(45deg); }
     100% { transform: scale(1) rotate(45deg); }
+  }
+
+  /* 💖 NOMBRE DENTRO */
+  .nombre {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+
+    color: white;
+    font-size: 26px;
+    font-weight: bold;
+    text-align: center;
+
+    text-shadow:
+      0 0 10px white,
+      0 0 20px #ff80bf,
+      0 0 40px #ff2e88;
   }
 </style>
 </head>
 
 <body>
 
-<h1>I love you, Emanolito </h1>
+<h1>I love you ❤️</h1>
 
 <div class="heart">
-  <span class="nombre">Emanolito</span>
+  <span class="nombre">Emanolito ❤️</span>
 </div>
 
 </body>
