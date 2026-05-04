@@ -54,9 +54,9 @@ function animate() {
 
   let pulse = Math.sin(t) * 2;
 
-  drawHeart(18 + pulse);
-  drawHeart(20 + pulse);
-  drawHeart(22 + pulse);
+  drawHeart(35 + pulse);
+  drawHeart(38 + pulse);
+  drawHeart(42 + pulse);
 
   t += 0.05;
 
