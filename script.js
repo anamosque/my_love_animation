@@ -19,7 +19,7 @@ function heart(t) {
 
 function drawHeart(scale) {
   const cx = canvas.width / 2;
-  const cy = canvas.height * 0.7;
+  const cy = canvas.height * 0.55;
 
   ctx.beginPath();
 
@@ -52,7 +52,7 @@ function animate() {
   ctx.fillStyle = "rgba(0,0,0,0.25)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  let base = Math.min(canvas.width, canvas.height) / 18;
+  let base = Math.min(canvas.width, canvas.height) / 25;
   let pulse = Math.sin(t) * 6;
 
   drawHeart(base + pulse);
