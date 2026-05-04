@@ -20,12 +20,13 @@ function heart(t) {
 
 // 🔥 calcula escala dinámica (esto es lo importante)
 function getScale() {
-  return Math.min(canvas.width, canvas.height) / 40;
+  return Math.min(canvas.width, canvas.height) / 25;
+
 }
 
 function drawHeart(scale) {
   const cx = canvas.width / 2;
-  const cy = canvas.height / 2 + 40; // un poco abajo para no tapar el texto
+  const cy = canvas.height * 0.65; // un poco abajo para no tapar el texto
 
   ctx.beginPath();
 
