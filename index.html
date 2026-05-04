@@ -3,20 +3,84 @@
 <head>
   <meta charset="UTF-8">
   <title>Love</title>
-  <link rel="stylesheet" href="style.css">
-</head>
 
-  <script>
-alert("HTML FUNCIONA");
-</script>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family: Arial; }
+    body { background:black; overflow:hidden; }
+
+    h1 {
+      position:absolute; width:100%; top:8%;
+      text-align:center; color:#ff2e88; font-size:42px;
+      text-shadow:0 0 10px #ff2e88, 0 0 20px #ff2e88, 0 0 40px #ff2e88;
+    }
+
+    h2 {
+      position:absolute; width:100%; top:16%;
+      text-align:center; color:#ff80bf; font-size:28px;
+      text-shadow:0 0 10px #ff80bf, 0 0 20px #ff80bf, 0 0 40px #ff80bf;
+    }
+  </style>
+</head>
 
 <body>
 
-<h1>I love you </h1>
-<h2>Emanolito </h2>
+<h1>I love you ❤️</h1>
+<h2>Emanolito 💖</h2>
 
 <canvas id="heart"></canvas>
 
-<script src="heart.js"></script>
+<!-- 🔥 TODO EL JS VA AQUÍ -->
+<script>
+const canvas = document.getElementById("heart");
+const ctx = canvas.getContext("2d");
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener("resize", resize);
+
+function heart(t) {
+  return {
+    x: 16 * Math.pow(Math.sin(t), 3),
+    y: -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t))
+  };
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  const scale = Math.min(canvas.width, canvas.height) / 25;
+  const cx = canvas.width / 2;
+  const cy = canvas.height / 2 + 50;
+
+  ctx.beginPath();
+
+  for (let i = 0; i <= Math.PI * 2; i += 0.01) {
+    let p = heart(i);
+    let x = cx + p.x * scale;
+    let y = cy + p.y * scale;
+
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  }
+
+  ctx.closePath();
+
+  ctx.shadowBlur = 40;
+  ctx.shadowColor = "#ff2e88";
+
+  ctx.strokeStyle = "#ff2e88";
+  ctx.lineWidth = 5;
+  ctx.stroke();
+
+  ctx.fillStyle = "rgba(255, 46, 136, 0.2)";
+  ctx.fill();
+}
+
+draw();
+</script>
+
 </body>
 </html>
