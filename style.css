@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: black;
+  overflow: hidden;
+}
+
+h1 {
+  position: absolute;
+  width: 100%;
+  top: 12%;
+  text-align: center;
+  color: #ff2e88;
+  font-size: 42px;
+  letter-spacing: 5px;
+  text-shadow: 
+    0 0 10px #ff2e88,
+    0 0 20px #ff2e88,
+    0 0 40px #ff2e88;
+}
+
+canvas {
+  display: block;
+}
