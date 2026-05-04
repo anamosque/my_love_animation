@@ -1,6 +1,7 @@
 const canvas = document.getElementById("heart");
 const ctx = canvas.getContext("2d");
 
+// tamaño pantalla
 function resize() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
@@ -8,8 +9,7 @@ function resize() {
 resize();
 window.addEventListener("resize", resize);
 
-let t = 0;
-
+// función corazón
 function heart(t) {
   return {
     x: 16 * Math.pow(Math.sin(t), 3),
@@ -17,9 +17,13 @@ function heart(t) {
   };
 }
 
-function drawHeart(scale) {
+// 🔥 DIBUJO FIJO (sin animación primero para probar)
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  const scale = Math.min(canvas.width, canvas.height) / 30;
   const cx = canvas.width / 2;
-  const cy = canvas.height * 0.55;
+  const cy = canvas.height / 2;
 
   ctx.beginPath();
 
@@ -35,33 +39,16 @@ function drawHeart(scale) {
 
   ctx.closePath();
 
-  // glow fuerte
-  ctx.shadowBlur = 70;
+  // glow
+  ctx.shadowBlur = 30;
   ctx.shadowColor = "#ff2e88";
 
   ctx.strokeStyle = "#ff2e88";
-  ctx.lineWidth = 6;
+  ctx.lineWidth = 5;
   ctx.stroke();
 
-  // relleno luminoso
-  ctx.fillStyle = "rgba(255, 46, 136, 0.18)";
+  ctx.fillStyle = "rgba(255, 46, 136, 0.2)";
   ctx.fill();
 }
 
-function animate() {
-  ctx.fillStyle = "rgba(0,0,0,0.25)";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  let base = Math.min(canvas.width, canvas.height) / 25;
-  let pulse = Math.sin(t) * 6;
-
-  drawHeart(base + pulse);
-  drawHeart(base + 10 + pulse);
-  drawHeart(base + 20 + pulse);
-
-  t += 0.05;
-
-  requestAnimationFrame(animate);
-}
-
-animate();
+draw();
