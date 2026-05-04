@@ -35,30 +35,24 @@ function drawHeart(scale) {
 
   ctx.closePath();
 
-  // 🔥 GRADIENTE (esto es lo que faltaba)
-  let gradient = ctx.createRadialGradient(cx, cy, 10, cx, cy, 300);
-  gradient.addColorStop(0, "#ff2e88");
-  gradient.addColorStop(0.5, "#ff4da6");
-  gradient.addColorStop(1, "transparent");
-
-  // 💖 relleno luminoso
-  ctx.fillStyle = gradient;
-  ctx.fill();
-
-  // ✨ glow fuerte real
-  ctx.shadowBlur = 50;
+  // 🔥 glow fuerte
+  ctx.shadowBlur = 40;
   ctx.shadowColor = "#ff2e88";
 
   ctx.strokeStyle = "#ff2e88";
-  ctx.lineWidth = 4;
+  ctx.lineWidth = 5;
   ctx.stroke();
+
+  // 💖 relleno suave
+  ctx.fillStyle = "rgba(255, 46, 136, 0.15)";
+  ctx.fill();
 }
 
 function animate() {
-  ctx.fillStyle = "rgba(0,0,0,0.25)";
+  ctx.fillStyle = "rgba(0,0,0,0.3)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  let pulse = Math.sin(t) * 1.5;
+  let pulse = Math.sin(t) * 2;
 
   drawHeart(18 + pulse);
   drawHeart(20 + pulse);
